@@ -1,0 +1,19 @@
+at first i use dynamic analysis to find out the messageboxA through Ollydbg
+then i find the method with comment that print out the message that you are succeed or fail for trying password
+jump back to the location where call this method
+it starts at 00401245 and 0040124C
+then look up
+the comment CMP EAX, EBX is the switch to these two method
+then look up and see where EAX and EBX's data come from
+there are two CALL comment in front of EAX and EBX
+0040137E and 004013D8
+then use IDA to find these two function
+0040137E is to switch the input to upper letter and add them together
+finally xor it with 4567h
+we got the encoding text
+the second function is to pick each char for the input and minus 30
+times the register with 30h then add the calculation i did above
+stop until the last bit
+then we got another encoding text
+if these two text is the same
+that's the username and password
